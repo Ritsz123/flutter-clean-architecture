@@ -8,7 +8,7 @@ import 'package:clean_flutter/features/number_trivia/domain/repositories/number_
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
-typedef Future<NumberTrivia> _concreteOrRandomChooser();
+typedef _concreteOrRandomChooser = Future<NumberTrivia> Function();
 
 class NumberTriviaRepositoryImpl extends NumberTriviaRepository {
   final NumberTriviaLocalDataSource localDataSource;
