@@ -1,7 +1,7 @@
-import 'package:clean_flutter/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:clean_flutter/features/number_trivia/presentation/bloc/bloc.dart';
 import 'package:clean_flutter/features/number_trivia/presentation/widgets/loading_widget.dart';
 import 'package:clean_flutter/features/number_trivia/presentation/widgets/message_display.dart';
+import 'package:clean_flutter/features/number_trivia/presentation/widgets/trivia_controls.dart';
 import 'package:clean_flutter/features/number_trivia/presentation/widgets/trivia_display.dart';
 import 'package:clean_flutter/injection_container.dart';
 import 'package:flutter/material.dart';
@@ -58,69 +58,5 @@ class NumberTriviaPage extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class TriviaControls extends StatefulWidget {
-  const TriviaControls({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _TriviaControlsState createState() => _TriviaControlsState();
-}
-
-class _TriviaControlsState extends State<TriviaControls> {
-  String inputString;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Input a number",
-          ),
-          onChanged: (value) => inputString = value,
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Expanded(
-              child: RaisedButton(
-                child: Text(
-                  "Search",
-                  style: TextStyle(fontSize: 18),
-                ),
-                color: Theme.of(context).accentColor,
-                textTheme: ButtonTextTheme.primary,
-                onPressed: dispatchConcrete,
-              ),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Expanded(
-              child: RaisedButton(
-                child: Text(
-                  "Get random trivia",
-                  style: TextStyle(fontSize: 18),
-                ),
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  void dispatchConcrete() {
-    BlocProvider.of<NumberTriviaBloc>(context)
-        .add(GetTriviaForConcreteNumber(inputString));
   }
 }
